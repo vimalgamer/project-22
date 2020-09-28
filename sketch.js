@@ -37,8 +37,8 @@ function setup() {
 
 	packageBody = Bodies.circle(width/2 , 200 , 5 ,packageBody_options);
 	World.add(world, packageBody);
+	Matter.Body.setStatic(packageBody,true);
 	
-
 	//Create a Ground
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
  	World.add(world, ground);
@@ -57,16 +57,19 @@ function draw() {
 
   packageSprite.x= packageBody.position.x;
   packageSprite.y= packageBody.position.y;
-
-  keyPressed();
-  drawSprites();
+  
+  
  
+  keyPressed();
+
+  drawSprites();
+  
 }
 
 function keyPressed() {
  if (keyCode === DOWN_ARROW) {
     // Look at the hints in the document and understand how to make the package body fall only on
-    Matter.packageBody.setVelocityY(packageBody,-5)
+	Matter.Body.setStatic(packageBody,false);
   }
 }
 
